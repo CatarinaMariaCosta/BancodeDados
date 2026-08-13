@@ -1,74 +1,66 @@
-## Aula 03
+## Aula 02 - Inicío das configurações do banco de dados
+Para verificar o status e demais informações do Banco de Dados, utilizamos o comando:
 
-Para criar um Banco de dados, utilizamos o comando :
-```sql
-CREATE DATABASE teste;
+```bash
+pg_lsclusters
 ```
-Para apagar um Banco de dados, utilizamos o comando:
 
-```sql
-DROP DATABASE cidades;
-```
->NÃO ESQUECER DO ;
- 
- ## Modelagem do Banco de Dados
-
- ```mermaid
- erDiagram
- PRODUTOS {
-    int id PK "Gerado automaticamente"
-    varchar nome "Nome do produto"
-    numeric valor "Preço so produto em R$"
-    int estoque "Irá armazenar a quantidade de produtos no estoque"
- }
- ```
- Após modelar, iremos executar as etapas de criação e inserção de dados.
- 
- ----
- Para criar a primeira tabela usamos so comandos:
-
- ```sql
- CREATE TABLE produtos(
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    valor NUMERIC(10,2) NOT NULL,
-    estoque INT NOT NULL DEFAULT 0
-);
-```
-Como podemos consultar a tabela, a principal forma é:
-```sql
-SELECT * FROM produtos;
-```
-Pra inserir dados na tabela, usamos o comando:
-```sql
-INSERT INTO produtos(nome,valor,estoque)
-VALUES('Caneta','1.50','100');
-```
+![](image.png)
 ----
-# CRIAÇÃO DO MEU PRIMEIRO PROJETO SOLO
 
-Comecei criando o Banco Cidades pelo MobaXTerm
-![alt text](image.png)
+Para acesso via root sem senha, o famoso SOCKET LOCAL, utilizamos o comando:
 
-Logo passei para o VSCODE Para iniciar a Tabela:
-
-```sql
-CREATE TABLE bigCity(
-id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-nome VARCHAR(170) NOT NULL,
-país VARCHAR(60) NOT NULL,
-população FLOAT NOT NULL DEFAULT 0
-);
+```bash
+sudo -u postgres psql
 ```
 
-Após eu escrever o CREATE TABLE com as informações acima,  minha tela ficou assim:
+Com esse comando, não preciso mostrar quem meu usuário é, o Linux já faz autentificação. (Ele vou ao usuário anterior, o famoso quit que os games dizem durante as partidas)
+
+```bash
+\q 
+```
+
+----
+
+Pra a alteração de senha ao usuário POSTGRES, utilizamos o comando:
+
+```bash
+ALTER USER postgres PASSWORD 'senha';
+```
+
+Após alteração da senha, o acesso, via localhost (SOCKET EXTERNO), é feito através do comando:
+
+```bash
+sudo psql -h 127.0.0.1 -U postgres
+```
+
+Configurações iniciais do Postgres:
+- Para habilitar conexões externas, de outros IPs, foi necessário as seguintes etapas:
+1. Navegar até a pasta do POSTGRESQL (`/etc/postgres/18/main/`).
+2. Editar o arquivo `postgresql.conf`através do comando:
+
+```bash
+sudo nano postgresql.conf
+```
+3. Editar a linha listen_adresses = '*';
+4. Editar o arquivo pg.hbs.conf
+5. Nas ultimas linhas, adicionamos as seguintes configurações:
 
 ![alt text](image-1.png)
 
-E então eu digitei INSERT INTO e VALUES e coloquei os valores:
+**Criação do primeiro Banco de Dados**
 
-![alt text](image-2.png)
+```mermaid
+graph TD
+A[(Banco de Dados)]
+```
+Para criar o banco de dados nos utilizamos o comando:
 
-E por fim o SELECT * FROM, para aparecer a tabela pronta:
+```sql
+CREATE DATABASE cidades;
+```
+E para verificar os bancos existentes:
 
-![alt text](image-3.png)
+```sql
+\l
+```
