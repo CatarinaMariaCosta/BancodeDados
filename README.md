@@ -42,3 +42,13 @@
  <p>E criamos nosso primeiro Banco que escolhemos por "CIDADES" e conectamos ao nosso VSCODE.</p>   
   </figcaption>
 </figure>
+<h2>Aula 03 - Banco de Dados</h2>
+<figure>
+  <figcaption>
+   <img width="1049" height="301" alt="image" src="https://github.com/user-attachments/assets/13351180-b13d-456c-9c6c-a32fac6a6424" />
+<p>Na terceira aula , começamos a criar as tabelas do nosso banco de dados (ID, Nome,</p>
+<img width="1069" height="525" alt="image" src="https://github.com/user-attachments/assets/67b8ddce-147e-42f8-af69-a0253fd53ded" />
+<p>Navegamos dentro do POSTGRES, e configuramos as liberações conforme a nossa necessidade atual, que seria para nos termos acesso não apenas no nosso computador.</p>
+ <p>E criamos nosso primeiro Banco que escolhemos por "CIDADES" e conectamos ao nosso VSCODE.</p>   
+  </figcaption>
+</figure>
